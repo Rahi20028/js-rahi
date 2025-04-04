@@ -14,6 +14,7 @@ console.log(p1.name);
 function animal(name) {
     this.name=name;
 }
+
 animal.prototype.speak= function(){
     console.log(`${this.name} makes a noice`);
     
