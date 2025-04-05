@@ -103,3 +103,24 @@ console.log(getelement(myarr));
 console.log(getelement([1,2,3,4,5]));
 
 
+
+// ----------------------------IIFE 
+
+(()=>{
+    console.log("IIFE runs right away");
+    
+})()
+
+const result=(function () {
+    let a=5
+    let b=6
+    return a+b
+  })();
+  console.log(result);
+  
+
+  ((name)=>{
+    console.log(`hello, ${name}`);
+    
+  })("rahi")
+  
