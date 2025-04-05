@@ -2,10 +2,10 @@
 
 let arr=[1,2,3,4,5,6,7,8,9,10]
 
-let firstele= arr[0]
-let lastele = arr[arr.length-1]
+let firstelement= arr[0]
+let lastelement = arr[arr.length-1]
 
-console.log(firstele);
-console.log(lastele);
+console.log(firstelement);
+console.log(lastelement);
 
 
