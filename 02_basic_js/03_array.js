@@ -89,6 +89,6 @@ let names = ["John", "Alice", "Bob"];
 names.sort();
 names.reverse();
 
-let numbers = [30, 5, 20, 10];
-numbers.sort((a, b) => a - b); 
-console.log(numbers);
+let num = [30, 5, 20, 10];
+num.sort((a, b) => a - b); 
+console.log(num);
