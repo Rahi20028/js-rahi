@@ -37,3 +37,22 @@ const {
     address:{city ,pin}
 }=person
 
+// -----------call stack 
+function one(){
+    console.log("one")
+    two()
+    console.log("Function one end")
+}
+function two(){
+    console.log("two")
+    three()
+    console.log("Function two end")
+}
+function three(){
+    console.log("three")
+    console.log("Function three end")
+}
+one()
+two()
+three()
+
