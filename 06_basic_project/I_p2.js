@@ -11,3 +11,20 @@ while(b>0){
 }
 
 console.log("gcd is:" ,a);
+
+
+
+let x=12,y=18
+let gcd;
+for(let i=Math.min(x,y); i>2 ;i--){
+    if(x%i==0 && y%i==0){
+
+        
+
+        gcd = i
+        break
+        
+        
+    }
+}
+console.log("by one more method:  ",gcd);
