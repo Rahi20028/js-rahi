@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event_delegation</title>
+</head>
+<body style="background-color: #212121; color: antiquewhite;">
+    <ul id="parentList">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+</body>
+<script>
+    document.getElementById('parentList').addEventListener('click', function(event) {
+  if (event.target.tagName === 'LI') {
+    alert('You clicked: ' + event.target.textContent);
+  }
+});
+
+</script>
+</html>

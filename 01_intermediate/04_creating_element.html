@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>creating new element</title>
+</head>
+<body style="background-color: #212121; color: antiquewhite; ">
+    
+</body>
+<script>
+const div = document.createElement("div")
+div.className ="main"
+div.id= Math.round(Math.random()*10+1)
+div.setAttribute("title", "generated title")
+div.style.backgroundColor = "green"
+div.style.padding = "15px"
+const addtext = document.createTextNode("learn with me ")
+div.appendChild(addtext)
+// div.innerText= "learn it"
+
+document.body.appendChild(div)
+console.log(div);
+
+
+</script>
+</html>
