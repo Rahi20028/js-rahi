@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keyboard check</title>
+</head>
+<body>
+    <h1>Press any key on your keyboard</h1>
+    <div id="keydisplay" >waiting...</div>
+</body>
+<script>
+    const key = document.getElementById("keydisplay")
+    document.addEventListener("keydown", function(event){
+        key.textContent = ` key : ${event.key} (${event.code})`
+    })
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emoji </title>
+    <style>
+        .display-emoji{
+            font-size: 100px;
+        }
+        button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    </style>
+</head>
+
+<body style="background-color: rgb(39, 6, 22); color: aliceblue; text-align: center;">
+    <div class="display-emoji" id="displayemoji">😀</div>
+    <br>
+    <button id="btn">change the emoji</button>
+
+
+</body>
+<script>
+    const emoji = document.getElementById("displayemoji")
+    const btn = document.getElementById("btn")
+    const emojilist = ["😀", "😂", "😎", "😍", "🤖", "👻", "🦄", "🐶", "🍕", "🚀", "🌈", "🎉", "😴", "😱", "🥳", "🧠", "🔥", "💀", "🐱", "🌍"];
+    btn.addEventListener("click", function emo() {
+        const randomemoji = Math.floor(Math.random() * emojilist.length)
+        emoji.textContent = emojilist[randomemoji]
+    })
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("btn").click()
+            emo()
+        }
+    })
+
+
+</script>
+
+</html>

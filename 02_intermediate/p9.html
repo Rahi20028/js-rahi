@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text editor</title>
+    <style>
+       body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .toolbar {
+      margin-bottom: 10px;
+    }
+
+    .toolbar button {
+      padding: 8px 12px;
+      margin-right: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #editor {
+      border: 1px solid #ccc;
+      min-height: 200px;
+      padding: 10px;
+      outline: none;
+    }  
+    </style>
+</head>
+<body>
+   <h2>Text Editor</h2>
+   <div class="toolbar">
+    <button id="boldbtn"><b>B</b></button>
+    <button id="italicbtn"><i>I</i></button>
+    <button id="underlinebtn"><u>U</u></button>
+   </div>
+   <div id="editor" contenteditable="true" >
+    
+   </div>
+</body>
+<script>
+    const boldBtn = document.getElementById("boldbtn");
+    const italicBtn = document.getElementById("italicbtn");
+    const underlineBtn = document.getElementById("underlinebtn");
+
+    function applyformat(command){
+        document.execCommand(command, false, null)
+    }
+
+    boldBtn.addEventListener('click', function(){
+        applyformat("bold")
+    })
+    italicBtn.addEventListener('click', function(){
+        applyformat("italic")
+    })
+    underlineBtn.addEventListener('click', function(){
+        applyformat("underline")
+    })
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+ 

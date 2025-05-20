@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body{
+            background-color:  #050720;
+          
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container{
+            
+            height: 180px;
+            width: 300px;
+            background-color: rgb(71, 39, 176);
+            color: antiquewhite;
+            border-radius: 20px;
+            border: 5px solid white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+         
+            font-family: 'Courier New', Courier, monospace;
+        }
+     #Clock{
+        font-size: 32px;
+        margin-bottom: 10px;
+     }
+     #date{
+        font-size: 20px;
+     }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="Clock"></div>
+    <div id="date"></div>
+</div>
+    
+</body>
+<script>
+    function updateclock(){
+  let timestamp = new Date();
+  let hour = String(timestamp.getHours()).padStart(2,'0')    
+  let minute = String(timestamp.getMinutes()).padStart(2,'0') 
+  let sec = String(timestamp.getSeconds()).padStart(2,'0') 
+  document.getElementById("Clock").textContent = `${hour}:${minute}:${sec}` 
+
+  const day = String(timestamp.getDate()).padStart(2,'0')
+  const month = String(timestamp.getMonth()+1).padStart(2,'0')
+  const year = timestamp.getFullYear()
+  document.getElementById("date").textContent = `${day}:${month}:${year}`
+    }
+    updateclock()
+    setInterval(updateclock, 1000)
+</script>
+</html>

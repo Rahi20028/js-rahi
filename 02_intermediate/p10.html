@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <style>
+         body{
+            background-color: rgb(15, 54, 88);
+            color: rgb(196, 218, 236);
+            font-family: 'Courier New', Courier, monospace;
+         }
+input{
+    padding: 10px;
+    width: 300px;
+}
+button{
+    padding: 10px 14px;
+
+}
+ul{
+    list-style-type: square;
+    font-size: 30px;
+}
+li{
+    padding: 10px;
+    border-bottom: 2px solid whitesmoke ; cursor: pointer;
+}
+.completed {
+    text-decoration: line-through;
+    color: grey;
+    
+  }
+    </style>
+</head>
+<body>
+    <h2>To-Do-List</h2>
+    <input id="taskinput" type="text">
+    <button id="btn">Add Task</button>
+    <ul id="tasklist">
+    </ul>
+</body>
+<script>
+    const taskinput = document.getElementById("taskinput")
+    const addbutton = document.getElementById("btn")
+    const tasklist = document.getElementById("tasklist")
+
+addbutton.addEventListener("click", function(){
+    const tasktext = taskinput.value.trim()
+    if(tasktext===''){
+        alert("please enter a task")
+        return
+    }
+
+    const li= document.createElement('li')
+    li.textContent= tasktext
+
+    li.addEventListener('click', function(){
+        li.classList.toggle("completed")
+    })
+
+    tasklist.appendChild(li)
+
+    taskinput.value = ''
+    taskinput.focus()
+
+})
+taskinput.addEventListener('keypress', function(event){
+    if(event.key === "Enter"){
+        addbutton.click()
+    }
+})
+</script>
+</html>

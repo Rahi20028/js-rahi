@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mouse circle</title>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            cursor: none;
+        }
+        #dot{
+            width: 15px;
+            height: 15px;
+            background-color: rgb(63, 10, 11);
+            border-radius: 50px;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.05s ease;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="dot"></div>
+    
+</body>
+<script>
+    const dot = document.getElementById("dot")
+    document.addEventListener("mousemove", function(e){
+        dot.style.left= e.clientX +"px"
+        dot.style.top = e.clientY +"px"
+    })
+</script>
+</html>
