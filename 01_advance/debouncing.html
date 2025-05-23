@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing</title>
+</head>
+<body>
+    <button id="clickbtn">click me</button>
+</body>
+<script>
+    function debounce(func, delay){
+        let timer
+        return function(...args){
+            clearTimeout(timer)
+            timer= setTimeout(()=> func.apply(this, args), delay)
+        }
+    }
+    function handleclick(){
+        console.log("button clicked!");
+        
+    }
+    const debounceclick = debounce(handleclick,5000)
+    document.getElementById("clickbtn").addEventListener("click", debounceclick)
+</script>
+</html>
