@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Debounced search</title>
 </head>
 <style>
-    body{
+    body {
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         margin: 20px;
+        background-color: #5bbef4;
     }
-    .book{
+
+    .book {
         margin: 10px 0;
         padding: 10px;
         border-bottom: 1px solid #ccc;
     }
-    #btn{
+
+    #btn {
         margin-top: 15px;
         display: none;
     }
 </style>
+
 <body>
     <h2>Debounced Search</h2>
     <input type="text" placeholder="enter the book" id="searchinput">
@@ -27,78 +32,79 @@
     <button id="btn">load More</button>
 </body>
 <script>
-class DebouncedSearch{
-    constructor(){
-        this.input = document.getElementById("searchinput")
-        this.result = document.getElementById("result")
-        this.loadMoreBtn = document.getElementById("btn")
-        this.apiUrl = 'https://openlibrary.org/search.json?q='
+    class DebouncedSearch {
+        constructor() {
+            this.input = document.getElementById("searchinput")
+            this.result = document.getElementById("result")
+            this.loadMoreBtn = document.getElementById("btn")
+            this.apiUrl = 'https://openlibrary.org/search.json?q='
 
-        this.books=[]
-        this.currentpage = 0
-        this.pagesize = 5
-        this.timer = null
+            this.books = []
+            this.currentpage = 0
+            this.pagesize = 5
+            this.timer = null
 
-        this.setup()
-    }
+            this.setup()
+        }
 
-    setup(){
-        this.input.addEventListener('input', ()=>{
-            clearTimeout(this.timer)
-            this.timer = setTimeout(()=>{
-                const query = this.input.value.trim()
-                if(query){
-                    this.searchbooks(query)
-                }else{
-                    this.clearResult()
+        setup() {
+            this.input.addEventListener('input', () => {
+                clearTimeout(this.timer)
+                this.timer = setTimeout(() => {
+                    const query = this.input.value.trim()
+                    if (query) {
+                        this.searchbooks(query)
+                    } else {
+                        this.clearResult()
+                    }
+                }, 500)
+            })
+            this.loadMoreBtn.addEventListener('click', () => this.showNextBook())
+        }
+        async searchbooks(query) {
+            try {
+                const response = await fetch(this.apiUrl + encodeURIComponent(query))
+                const data = await response.json()
+                this.books = data.docs;
+                this.currentpage = 0
+                this.clearResult()
+
+                if (this.books.length > 0) {
+                    this.showNextBook()
+                } else {
+                    this.result.innerHTML = 'no books found'
                 }
-            },500)
-        })
-        this.loadMoreBtn.addEventListener('click',()=> this.showNextBook())
-    }
-    async searchbooks(query){
-        try{
-            const response = await fetch(this.apiUrl + encodeURIComponent(query))
-            const data = await response.json()
-            this.books = data.docs;
-            this.currentpage=0
-            this.clearResult()
+            }
+            catch (error) {
+                console.log('error fetching data : ', error);
 
-            if(this.books.length>0){
-                this.showNextBook()
-            }else{
-                this.result.innerHTML = 'no books found'
             }
         }
-        catch(error ){
-console.log('error fetching data : ', error );
 
+        showNextBook() {
+            const start = this.currentpage * this.pagesize
+            const end = start + this.pagesize
+            const nextBooks = this.books.slice(start, end)
+
+            nextBooks.forEach(book => {
+                const div = document.createElement('div')
+                div.className = 'book'
+                div.innerHTML = `<strong>${book.title}</strong> <br> by ${book.author_name?.join(',') || 'Unknown'}`
+                this.result.appendChild(div)
+            })
+            this.currentpage++
+            if (end >= this.books.length) {
+                this.loadMoreBtn.style.display = 'none'
+            } else {
+                this.loadMoreBtn.style.display = 'block'
+            }
         }
-    }
-
-    showNextBook(){
-        const start = this.currentpage * this.pagesize
-        const end = start + this.pagesize
-        const nextBooks = this.books.slice(start,end)
-
-        nextBooks.forEach(book =>{
-            const div = document.createElement('div')
-            div.className = 'book'
-            div.innerHTML = `<strong>${book.title}</strong> <br> by ${book.author_name?.join(',')|| 'Unknown'}`
-            this.result.appendChild(div)
-        })
-        this.currentpage++
-        if(end>=this.books.length){
+        clearResult() {
+            this.result.innerHTML = ''
             this.loadMoreBtn.style.display = 'none'
-        }else{
-            this.loadMoreBtn.style.display= 'block'
         }
     }
-    clearResult(){
-        this.result.innerHTML=''
-        this.loadMoreBtn.style.display='none'
-    }
-}
-new DebouncedSearch()
+    new DebouncedSearch()
 </script>
+
 </html>
