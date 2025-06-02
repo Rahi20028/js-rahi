@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joke Generator</title>
     <style>
-        body{
+        body {
             text-align: center;
             background-color: #fc8dd7;
             padding: 50px;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            
+
         }
-        #jokebtn{
+
+        #jokebtn {
             height: 50px;
             width: 150px;
             font-size: 1.2rem;
         }
-        h2{
-         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        #displayjoke{
+
+        #displayjoke {
             margin-top: 50px;
             font-size: 1.3rem;
         }
     </style>
 </head>
+
 <body>
     <h2>Click to Get a Lame Joke!</h2>
     <button id="jokebtn">Click Me</button>
@@ -33,43 +38,44 @@
 </body>
 <script>
     class JokeGenerator {
-    constructor(apiUrl, displayElement) {
-        this.apiUrl = apiUrl;
-        this.displayElement = displayElement;
-    }
+        constructor(apiUrl, displayElement) {
+            this.apiUrl = apiUrl;
+            this.displayElement = displayElement;
+        }
 
-    getJoke() {
-        return fetch(this.apiUrl, {
-            headers: {
-                "Accept": "application/json"
-            }
-        })
-        .then(response => response.json())
-        .then(data => data.joke);
-    }
-
-    showJoke() {
-        this.getJoke()
-            .then(joke => {
-                this.displayElement.textContent = joke;
+        getJoke() {
+            return fetch(this.apiUrl, {
+                headers: {
+                    "Accept": "application/json"
+                }
             })
-            .catch(error => {
-                this.displayElement.textContent = "Oops! Could not load a joke. Try again!";
-                console.error("Error fetching joke:", error);
-            });
+                .then(response => response.json())
+                .then(data => data.joke);
+        }
+
+        showJoke() {
+            this.getJoke()
+                .then(joke => {
+                    this.displayElement.textContent = joke;
+                })
+                .catch(error => {
+                    this.displayElement.textContent = "Oops! Could not load a joke. Try again!";
+                    console.error("Error fetching joke:", error);
+                });
+        }
     }
-}
 
-const displayjoke = document.getElementById("displayjoke");
-const jokebtn = document.getElementById("jokebtn");
-
-
-const jokeApp = new JokeGenerator('https://icanhazdadjoke.com/', displayjoke);
+    const displayjoke = document.getElementById("displayjoke");
+    const jokebtn = document.getElementById("jokebtn");
 
 
-jokebtn.addEventListener("click", () => {
-    jokeApp.showJoke();
-});
+    const jokeApp = new JokeGenerator('https://icanhazdadjoke.com/', displayjoke);
+
+
+    jokebtn.addEventListener("click", () => {
+        jokeApp.showJoke();
+    });
 
 </script>
+
 </html>
